@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // For credentials authentication
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model PersonalInfo {
+  id          String   @id @default(cuid())
+  name        String
+  title       String
+  bio         String   @db.Text
+  email       String
+  location    String?
+  avatar      String?
+  resumeUrl   String?
+  github      String?
+  linkedin    String?
+  twitter     String?
+  website     String?
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  name        String
+  category    String   // e.g., "Frontend", "Backend", "Tools"
+  proficiency Int      @default(0) // 0-100
+  icon        String?  // Icon name or URL
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Education {
+  id          String   @id @default(cuid())
+  institution String
+  degree      String
+  field       String?
+  startDate   DateTime
+  endDate     DateTime?
+  description String?  @db.Text
+  logo        String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Certification {
+  id          String   @id @default(cuid())
+  name        String
+  issuer      String
+  issueDate   DateTime
+  expiryDate  DateTime?
+  credentialId String?
+  credentialUrl String?
+  logo        String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  longDescription String? @db.Text
+  image       String?
+  techStack   String   // JSON array of technologies
+  githubUrl   String?
+  liveUrl     String?
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  image       String?
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
