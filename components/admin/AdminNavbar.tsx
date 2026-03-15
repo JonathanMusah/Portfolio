@@ -55,7 +55,49 @@ export default function AdminNavbar() {
                 Blog
               </Link>
             </div>
-          </div>
+            </div>
+            <div className="hidden lg:flex gap-6">
+                <Link
+                  href="/admin/skills"
+                  className={`px-3 py-2 rounded-lg transition-colors ${
+                    pathname?.startsWith('/admin/skills')
+                      ? 'bg-primary-50 text-primary-600 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Skills
+                </Link>
+                <Link
+                  href="/admin/education"
+                  className={`px-3 py-2 rounded-lg transition-colors ${
+                    pathname?.startsWith('/admin/education')
+                      ? 'bg-primary-50 text-primary-600 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Education
+                </Link>
+                <Link
+                  href="/admin/certifications"
+                  className={`px-3 py-2 rounded-lg transition-colors ${
+                    pathname?.startsWith('/admin/certifications')
+                      ? 'bg-primary-50 text-primary-600 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Certifications
+                </Link>
+                <Link
+                  href="/admin/personal-info"
+                  className={`px-3 py-2 rounded-lg transition-colors ${
+                    pathname?.startsWith('/admin/personal-info')
+                      ? 'bg-primary-50 text-primary-600 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  Profile
+                </Link>
+            </div>
           <div className="flex items-center gap-4">
             <Link
               href="/"

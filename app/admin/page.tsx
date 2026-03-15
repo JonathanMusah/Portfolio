@@ -31,17 +31,11 @@ export default async function AdminDashboard() {
                 <p className="text-gray-600">{projects.length} total</p>
               </div>
             </div>
-            <Link
-              href="/admin/projects/new"
-              className="btn-primary flex items-center gap-2"
-            >
+            <Link href="/admin/projects/new" className="btn-primary flex items-center gap-2">
               <FaPlus /> New
             </Link>
           </div>
-          <Link
-            href="/admin/projects"
-            className="text-primary-600 hover:text-primary-700 font-medium"
-          >
+          <Link href="/admin/projects" className="text-primary-600 hover:text-primary-700 font-medium">
             Manage Projects →
           </Link>
         </div>
@@ -57,17 +51,11 @@ export default async function AdminDashboard() {
                 <p className="text-gray-600">{blogPosts.length} total</p>
               </div>
             </div>
-            <Link
-              href="/admin/blog/new"
-              className="btn-primary flex items-center gap-2"
-            >
+            <Link href="/admin/blog/new" className="btn-primary flex items-center gap-2">
               <FaPlus /> New
             </Link>
           </div>
-          <Link
-            href="/admin/blog"
-            className="text-primary-600 hover:text-primary-700 font-medium"
-          >
+          <Link href="/admin/blog" className="text-primary-600 hover:text-primary-700 font-medium">
             Manage Blog Posts →
           </Link>
         </div>
@@ -97,9 +85,15 @@ export default async function AdminDashboard() {
             <h3 className="font-semibold text-gray-900 mb-1">Education</h3>
             <p className="text-sm text-gray-600">Update education history</p>
           </Link>
+          <Link
+            href="/admin/certifications"
+            className="p-4 border border-gray-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors"
+          >
+            <h3 className="font-semibold text-gray-900 mb-1">Certifications</h3>
+            <p className="text-sm text-gray-600">Manage certifications</p>
+          </Link>
         </div>
       </div>
     </div>
   )
 }
-
