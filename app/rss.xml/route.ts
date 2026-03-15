@@ -1,7 +1,8 @@
 import { getBlogPosts, getPersonalInfo } from '@/lib/data'
+import { getBaseUrl } from '@/lib/siteUrl'
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getBaseUrl()
   const personalInfo = await getPersonalInfo()
   const posts = await getBlogPosts(true) // Only published posts
 

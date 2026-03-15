@@ -1,12 +1,13 @@
 import { getPersonalInfo, getProjects } from '@/lib/data'
 import HeroSection from '@/components/home/HeroSection'
 import PreviousProjectSection from '@/components/home/PreviousProjectSection'
+import { getBaseUrl } from '@/lib/siteUrl'
 
 export default async function Home() {
   const personalInfo = await getPersonalInfo()
   const projects = await getProjects()
   const previousProject = projects[0] || null
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = getBaseUrl()
   
   const personSchema = personalInfo ? {
     '@context': 'https://schema.org',

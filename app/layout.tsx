@@ -7,9 +7,11 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import { ToastProvider } from '@/contexts/ToastContext'
 import { ErrorBoundary } from '@/components/ui/ErrorBoundary'
 import { getPersonalInfo } from '@/lib/data'
+import { getBaseUrl } from '@/lib/siteUrl'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const baseUrl = getBaseUrl()
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +26,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     siteName: 'Jonathan Musah',
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(baseUrl),
 }
 
 export default async function RootLayout({
@@ -33,7 +35,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const personalInfo = await getPersonalInfo()
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   
   const websiteSchema = personalInfo ? {
     '@context': 'https://schema.org',
