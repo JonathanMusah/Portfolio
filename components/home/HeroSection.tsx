@@ -207,16 +207,14 @@ export default function HeroSection({ personalInfo }: HeroSectionProps) {
               transition={{ delay: 1.2, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 items-center"
             >
-              {personalInfo?.resumeUrl && (
-                <Link
-                  href={personalInfo.resumeUrl}
+              <Link
+                  href={personalInfo?.resumeUrl || 'https://drive.google.com/file/d/YOUR_CV_FILE_ID/view'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary btn-glow flex items-center gap-2.5"
                 >
                   <FaDownload className="text-sm" /> Download Resume
                 </Link>
-              )}
               <Link
                 href="/contact"
                 className="btn-secondary flex items-center gap-2.5"

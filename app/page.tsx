@@ -1,12 +1,10 @@
-import { getPersonalInfo, getProjects } from '@/lib/data'
+import { getPersonalInfo } from '@/lib/data'
 import HeroSection from '@/components/home/HeroSection'
-import PreviousProjectSection from '@/components/home/PreviousProjectSection'
+import FeaturedProjectsSection from '@/components/home/FeaturedProjectsSection'
 import { getBaseUrl } from '@/lib/siteUrl'
 
 export default async function Home() {
   const personalInfo = await getPersonalInfo()
-  const projects = await getProjects()
-  const previousProject = projects[0] || null
   const baseUrl = getBaseUrl()
   
   const personSchema = personalInfo ? {
@@ -39,7 +37,7 @@ export default async function Home() {
         />
       )}
       <HeroSection personalInfo={personalInfo} />
-      <PreviousProjectSection project={previousProject} />
+      <FeaturedProjectsSection />
     </>
   )
 }

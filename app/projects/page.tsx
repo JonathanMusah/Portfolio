@@ -4,13 +4,21 @@ import ProjectCard from '@/components/projects/ProjectCard'
 import ExternalProjectSpotlight from '@/components/projects/ExternalProjectSpotlight'
 import { externalProjects } from '@/lib/externalProjects'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'Explore my portfolio of projects and applications',
 }
 
 export default async function ProjectsPage() {
-  const projects = await getProjects()
+  const allProjects = await getProjects()
+
+  // Filter out DB projects that duplicate an external project (by matching title keywords)
+  const externalNames = externalProjects.map((p) => p.name.toLowerCase())
+  const projects = allProjects.filter(
+    (p) => !externalNames.some((name) => name.includes(p.title.toLowerCase()) || p.title.toLowerCase().includes(name.split('—')[0].trim().toLowerCase()))
+  )
 
   return (
     <div className="min-h-screen bg-[#0a0a14] relative py-20">
@@ -31,21 +39,19 @@ export default async function ProjectsPage() {
 
         <ExternalProjectSpotlight projects={externalProjects} />
 
-        <div className="mb-10">
-          <h2 className="text-2xl md:text-3xl text-gray-100 font-semibold">Portfolio Entries</h2>
-          <p className="text-gray-400 mt-2">Smaller projects and shipped builds stored in the portfolio database.</p>
-        </div>
+        {projects.length > 0 && (
+          <>
+            <div className="mb-10">
+              <h2 className="text-2xl md:text-3xl text-gray-100 font-semibold">Portfolio Entries</h2>
+              <p className="text-gray-400 mt-2">Smaller projects and shipped builds stored in the portfolio database.</p>
+            </div>
 
-        {projects.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-500 text-lg font-mono">{'// No projects available yet. Check back soon!'}</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>
