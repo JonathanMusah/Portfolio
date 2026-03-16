@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: 'Learn more about Jonathan Musah — Software Engineer specializing in Next.js, React, TypeScript, and Python.',
 }
 
+export const revalidate = 60 // Revalidate data every 60 seconds
+
 export default async function AboutPage() {
   const personalInfo = await getPersonalInfo()
   const skills = await getSkills()

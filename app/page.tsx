@@ -3,6 +3,8 @@ import HeroSection from '@/components/home/HeroSection'
 import FeaturedProjectsSection from '@/components/home/FeaturedProjectsSection'
 import { getBaseUrl } from '@/lib/siteUrl'
 
+export const revalidate = 60 // Revalidate data every 60 seconds
+
 export default async function Home() {
   const personalInfo = await getPersonalInfo()
   const baseUrl = getBaseUrl()
