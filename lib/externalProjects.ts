@@ -47,4 +47,15 @@ export const externalProjects: ExternalProject[] = [
     githubUrl: 'https://github.com/JonathanMusah/ai-video-frame-extractor',
     notes: 'Built with a beautiful dark mode UI, handles complex text parsing and spawns FFmpeg processes for frame extraction.',
   },
+  {
+    id: 'moire-pattern-detection',
+    name: 'Moiré Pattern Detection & Neural Realism Transfer',
+    category: 'Computer Vision Research',
+    status: 'in-progress',
+    summary:
+      'A neural transfer learning pipeline that generates photorealistic synthetic ID card images to train robust moiré pattern anti-spoofing detectors. Achieved 90.7% realism improvement using a U-Net architecture that outperforms hand-tuned 11-stage image processing pipelines across all 7 evaluation metrics.',
+    architecture: ['Python', 'PyTorch (U-Net)', 'OpenCV', 'Streamlit', 'scikit-image'],
+    githubUrl: 'https://github.com/JonathanMusah/moire-pattern-detection',
+    notes: 'Active research project — showcase repo with methodology and results only. Full code release planned upon publication.',
+  },
 ]
