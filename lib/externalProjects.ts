@@ -5,7 +5,7 @@ export interface ExternalProject {
   status: 'in-progress' | 'ready' | 'planned'
   summary: string
   architecture: string[]
-  repoPath?: string
+
   liveUrl?: string
   githubUrl?: string
   notes?: string
@@ -31,7 +31,7 @@ export const externalProjects: ExternalProject[] = [
     summary:
       'A marketplace thesis-grade build focused on listings, messaging, reviews, favorites, and role-aware workflows. This project is presented as an active build while core modules are complete and production hardening is ongoing.',
     architecture: ['Next.js 16 + React 19 (Frontend)', 'NextAuth + Prisma (Auth/Data Access)', 'MySQL + Prisma Schema (Database)', 'Jest + RTL (Quality Gates)'],
-    repoPath: 'E:/another/ecomerce/jiji-clone',
+
     notes:
       'Positioned intentionally as Under Active Development: core architecture and modules are implemented; final build and test stabilization is in progress before production deployment.',
   },
@@ -43,7 +43,7 @@ export const externalProjects: ExternalProject[] = [
     summary:
       'A professional standalone Windows application that parses and auto-formats messy AI-generated video annotation segments. Features smart merge modes (Auto, Suggest, Manual) and a built-in FFmpeg manager for precise frame extraction.',
     architecture: ['Python', 'Tkinter (GUI)', 'PyInstaller', 'FFmpeg'],
-    repoPath: 'E:/another/AC2/studio/studio',
+
     githubUrl: 'https://github.com/JonathanMusah/ai-video-frame-extractor',
     notes: 'Built with a beautiful dark mode UI, handles complex text parsing and spawns FFmpeg processes for frame extraction.',
   },
@@ -57,5 +57,16 @@ export const externalProjects: ExternalProject[] = [
     architecture: ['Python', 'PyTorch (U-Net)', 'OpenCV', 'Streamlit', 'scikit-image'],
     githubUrl: 'https://github.com/JonathanMusah/moire-pattern-detection',
     notes: 'Active research project — showcase repo with methodology and results only. Full code release planned upon publication.',
+  },
+  {
+    id: 'tgtoxic-banking-trojan',
+    name: 'TgToxic Banking Trojan — Anti-Evasion Research',
+    category: 'Cybersecurity Research',
+    status: 'in-progress',
+    summary:
+      'Comprehensive reverse-engineering analysis of the TgToxic Android banking trojan. Developed a multi-layered bypass framework (14/14 checks passed) for its anti-emulator defenses using Frida instrumentation, and documented its novel dead-drop C2 infrastructure spanning 25+ community forums.',
+    architecture: ['Python', 'Frida (Dynamic Instrumentation)', 'Android Emulator', 'Chrome DevTools Protocol', 'ADB'],
+    githubUrl: 'https://github.com/JonathanMusah/TgToxic',
+    notes: 'Active security research — showcase repo with methodology and findings only. Code and samples withheld to prevent misuse.',
   },
 ]

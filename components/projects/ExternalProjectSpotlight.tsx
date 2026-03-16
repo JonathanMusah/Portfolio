@@ -8,7 +8,7 @@ interface ExternalProjectSpotlightProps {
 function getStatusLabel(status: ExternalProject['status']) {
   if (status === 'ready') return 'Ready'
   if (status === 'planned') return 'Planned'
-  return 'In Progress'
+  return 'Under Active Development'
 }
 
 export default function ExternalProjectSpotlight({ projects }: ExternalProjectSpotlightProps) {
@@ -57,11 +57,7 @@ export default function ExternalProjectSpotlight({ projects }: ExternalProjectSp
               </div>
             </div>
 
-            {project.repoPath && (
-              <p className="mt-5 text-sm text-gray-500">
-                Local folder: <span className="text-gray-300">{project.repoPath}</span>
-              </p>
-            )}
+
 
             {project.notes && <p className="mt-2 text-sm text-gray-500">{project.notes}</p>}
 
